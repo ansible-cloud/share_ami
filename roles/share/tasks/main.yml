@@ -1,0 +1,8 @@
+- name: give persmissions for AMI to be launched by specified account
+  amazon.aws.ec2_ami:
+    region: "{{ item.key }}"
+    image_id: "{{ item.value }}"
+    state: present
+    launch_permissions:
+      user_ids: "{{ user_id_list }}"
+  loop: "{{ ami_list | dict2items }}"

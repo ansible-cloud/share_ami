@@ -1,0 +1,10 @@
+- name: Create lab instances in AWS
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  tasks:
+    - name: print out each ami from a dictionary
+      debug:
+        msg: "{{ item.value }}"
+      loop: "{{ pre_build_controller_ami | dict2items }}"

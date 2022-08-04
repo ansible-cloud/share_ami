@@ -1,0 +1,12 @@
+- name: Create lab instances in AWS
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  tasks:
+    - name: backup configuration
+      include_role:
+        name: "../roles/share"
+      vars:
+        user_id_list: "{{ account_list }}"
+        ami_list: "{{ pre_build_controller_ami }}"
