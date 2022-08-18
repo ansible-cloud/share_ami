@@ -2,6 +2,16 @@
 
 This is an Ansible content collection for sharing custom amazon machine images (AMIs).  
 
+## Table of Contents
+* [Using in Automation controller](#using-in-automation-controller)
+* [Requirements](#requirements)
+* [How to use:](#how-to-use)
+  * [Example task calling this role:](#example-task-calling-this-role)
+  * [Full playbook example](#full-playbook-example)
+* [See Also:](#see-also)
+* [More information about contributing](#more-information-about-contributing)
+* [Licensing](#licensing)
+
 # Using in Automation controller
 
 You can also directly just use this collection as a project inside Automation controller (part of Red Hat Ansible Automation Platform).  Load the Github repository [https://github.com/ansible-cloud/share_ami](https://github.com/ansible-cloud/share_ami) as a project inside automation controller and select the `share_ami.yml` playbook and set the two variables listed below.  You do NOT need to install the collection to use it directly but you WILL need the `amazon.aws` collection installed.
