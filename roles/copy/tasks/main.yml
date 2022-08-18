@@ -1,0 +1,7 @@
+---
+- name: basic AMI copy
+  community.aws.ec2_ami_copy:
+    source_region: "{{ item[0].key }}"
+    source_image_id: "{{ item[0].value }}"
+    region: "{{ item[1] }}"
+  loop: "{{ ami_list | dict2items | product(copy_to_regions) | list }}"

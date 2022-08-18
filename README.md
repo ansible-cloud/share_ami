@@ -1,78 +1,41 @@
 # ansible_cloud.share_ami
 
-This is an Ansible content collection for sharing custom amazon machine images (AMIs).  
-
-## Table of Contents
-* [Using in Automation controller](#using-in-automation-controller)
-* [Requirements](#requirements)
-* [How to use:](#how-to-use)
-  * [Example task calling this role:](#example-task-calling-this-role)
-  * [Full playbook example](#full-playbook-example)
-* [See Also:](#see-also)
-* [More information about contributing](#more-information-about-contributing)
-* [Licensing](#licensing)
-
-# Using in Automation controller
-
-You can also directly just use this collection as a project inside Automation controller (part of Red Hat Ansible Automation Platform).  Load the Github repository [https://github.com/ansible-cloud/share_ami](https://github.com/ansible-cloud/share_ami) as a project inside automation controller and select the `share_ami.yml` playbook and set the two variables listed below.  You do NOT need to install the collection to use it directly but you WILL need the `amazon.aws` collection installed.
-
-# Requirements
-
-You need three things:
-
-1. a list of AMIs you want to share
-
-```
-my_ami_list:
-  ap-northeast-1: ami-0c76633109ab40fc
-  eu-central-1: ami-00690163363bc33b2
-  us-east-1: ami-0863330c9057acd1
-```
-
-2. a list of Account IDs you want to share the AMIs to
-
-```
-account_list:
-  - "114320544164"
-```
-
-3. The collection [amazon.aws](https://github.com/ansible-collections/amazon.aws/blob/main/README.md) installed. (`ansible-galaxy collection install amazon.aws`)
-
-# How to use:
-
-If you are using this collection you need to install it.
+This is an Ansible content collection for sharing custom amazon machine images (AMIs). If you are using this collection you need to install it.
 
 ```
 ansible-galaxy collection install ansible_cloud.share_ami
 ```
 
-## Example task calling this role:
+## Table of Contents
+* [Using in Automation controller](#using-in-automation-controller)
+* [copy AMI](#copy-ami)
+* [share AMI](#share-ami)
+* [Requirements](#requirements)
+* [How to use:](#how-to-use)
+* [See Also:](#see-also)
+* [More information about contributing](#more-information-about-contributing)
+* [Licensing](#licensing)
+<!-- /TOC -->
 
-```
-- name: backup configuration
-  include_role:
-    name: ansible_cloud.share_ami.share"
-  vars:
-    user_id_list: "{{ account_list }}"
-    ami_list: "{{ my_ami_list }}"
-```
+# Using in Automation controller
 
-## Full playbook example
+You can also directly just use this collection as a project inside Automation controller (part of Red Hat Ansible Automation Platform).  Load the Github repository [https://github.com/ansible-cloud/share_ami](https://github.com/ansible-cloud/share_ami) as a project inside automation controller and select the `share_ami.yml` playbook or the `copy_ami.yml` playbook. Make sure to set the variables listed in the role documentation.  You do NOT need to install the collection to use it directly but you WILL need the `amazon.aws` collection installed.
 
-```
-- name: share custom amazon machine images (AMIs) to other AWS accounts
-  hosts: localhost
-  connection: local
-  become: false
-  gather_facts: false
-  tasks:
-    - name: share ami
-      include_role:
-        name: ansible_cloud.share_ami.share
-      vars:
-        user_id_list: "{{ account_list }}"
-        ami_list: "{{ my_ami_list }}"
-```
+# copy AMI
+
+This role will copy specified AMIs to other regions and return a list of the new AMI info.  It can take a list of AMIs and their existing region and copy to a list of regions.
+
+[Documentation for ansible_cloud.share_ami.copy](roles/copy/README.md)
+
+# share AMI
+
+This role will share private AMIs with specified accounts.
+
+[Documentation for ansible_cloud.share_ami.share](roles/share/README.md)
+
+# Requirements
+
+The collection [amazon.aws](https://github.com/ansible-collections/amazon.aws/blob/main/README.md) installed. (`ansible-galaxy collection install amazon.aws`)
 
 # See Also:
 

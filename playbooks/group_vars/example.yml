@@ -9,3 +9,7 @@ account_list:
   - "90073example"
   - "71963example"
   - "07923example"
+
+my_copy_to_regions:
+  - us-west-1
+  - us-east-2

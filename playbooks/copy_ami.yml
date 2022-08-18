@@ -7,7 +7,7 @@
   tasks:
     - name: share ami
       include_role:
-        name: "../roles/share"
+        name: "../roles/copy"
       vars:
-        user_id_list: "{{ account_list }}"
         ami_list: "{{ my_ami_list }}"
+        copy_to_regions: "{{ my_copy_to_regions }}"

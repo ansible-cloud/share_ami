@@ -1,0 +1,12 @@
+- name: copy AMIs in AWS to other regions - debug test
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  tasks:
+    - name: print out vars
+      debug:
+        msg:
+          - "source_region: {{ item[0].key }}, source_image_id:{{ item[0].value }}"
+          - "dest_region: {{ item[1] }}"
+      loop: "{{ my_ami_list | dict2items | product(my_copy_to_regions) | list }}"
