@@ -1,12 +1,12 @@
-- name: Create lab instances in AWS
+- name: share custom amazon machine images (AMIs) to other AWS accounts
   hosts: localhost
   connection: local
   become: false
   gather_facts: false
   tasks:
-    - name: backup configuration
+    - name: share ami
       include_role:
         name: "../roles/share"
       vars:
         user_id_list: "{{ account_list }}"
-        ami_list: "{{ pre_build_controller_ami }}"
+        ami_list: "{{ my_ami_list }}"

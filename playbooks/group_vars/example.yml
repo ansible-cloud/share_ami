@@ -1,0 +1,11 @@
+my_ami_list:
+  ap-northeast-1: ami-01334example
+  ap-southeast-1: ami-0b3f3example
+  eu-central-1: ami-03a5732example
+  us-east-1: ami-01da94de9cexample
+  us-east-2: ami-009f8b2c6dexample
+account_list:
+  - "11463example"
+  - "90073example"
+  - "71963example"
+  - "07923example"
