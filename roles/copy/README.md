@@ -18,8 +18,9 @@ my_ami_list:
 2. a list of regions you want to copy to
 
 ```
-account_list:
-  - "114320544164"
+my_copy_to_regions:
+  - us-west-1
+  - us-east-2
 ```
 
 ## Example task calling this role:
