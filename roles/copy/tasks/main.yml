@@ -5,3 +5,13 @@
     source_image_id: "{{ item[0].value }}"
     region: "{{ item[1] }}"
   loop: "{{ ami_list | dict2items | product(copy_to_regions) | list }}"
+  register: copy_info
+
+- debug: print out new AMI information
+  debug:
+    msg:
+      - "====="
+      - "original AMI: {{ item.item[0].value }} source_region: {{ item.item[0].key }}"
+      - "region we copied to: {{ item.item[1] }}, new AMI: {{ item.image_id }}"
+      - "====="
+  loop: "{{ copy_info.results }}"
