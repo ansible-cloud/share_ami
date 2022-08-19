@@ -18,9 +18,12 @@ my_ami_list:
 2. a list of Account IDs you want to share the AMIs to
 
 ```
-my_copy_to_regions:
-  - us-west-1
-  - us-east-2
+account_list:
+  - "11463example"
+  - "90073example"
+  - "71963example"
+  - "07923example"
+
 ```
 
 ## Example task calling this role:
