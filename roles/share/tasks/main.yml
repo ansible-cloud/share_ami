@@ -1,11 +1,18 @@
+- name: tag AMI images
+  amazon.aws.ec2_tag:
+    region: "{{ item.key }}"
+    resource: "{{ item.value }}"
+    state: present
+    tags:
+      Name: "{{ new_ami_name | default('no name specified') }}"
+      ansiblecloud: "{{ new_tag | default('') }}"
+  loop: "{{ ami_list | dict2items }}"
+
 - name: give persmissions for AMI to be launched by specified account
   amazon.aws.ec2_ami:
-    name: "{{ new_ami_name | default('') }}"
     region: "{{ item.key }}"
     image_id: "{{ item.value }}"
     state: present
     launch_permissions:
       user_ids: "{{ user_id_list }}"
-    tags:
-      ansiblecloud: "{{ new_tag | default('') }}"
   loop: "{{ ami_list | dict2items }}"
