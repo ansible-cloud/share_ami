@@ -1,5 +1,5 @@
 ---
-- name: basic AMI copy
+- name: Basic AMI copy
   community.aws.ec2_ami_copy:
     source_region: "{{ item[0].key }}"
     source_image_id: "{{ item[0].value }}"
@@ -7,11 +7,19 @@
   loop: "{{ ami_list | dict2items | product(copy_to_regions) | list }}"
   register: copy_info
 
-- debug: print out new AMI information
-  debug:
+- name: debug all
+  ansible.builtin.debug:
+    var: copy_info
+    
+- name: Print out new AMI information
+  ansible.builtin.debug:
     msg:
       - "====="
       - "original AMI: {{ item.item[0].value }} source_region: {{ item.item[0].key }}"
       - "region we copied to: {{ item.item[1] }}, new AMI: {{ item.image_id }}"
       - "====="
   loop: "{{ copy_info.results }}"
+
+- name: Diplay AMI information to terminal
+  ansible.builtin.debug:
+    msg: "{{ lookup('template', 'templates/display.j2') }}"

@@ -3,3 +3,4 @@
 playbooks/group_vars/all.yml
 playbooks/extra.yml
 playbooks/share_centos.yml
+playbooks/controller_copy.yml

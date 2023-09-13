@@ -1,0 +1,5 @@
+{% for item in copy_info.results %}
+original AMI: {{ item.item[0].value }} source_region: {{ item.item[0].key }}
+region we copied to: {{ item.item[1] }}, new AMI: {{ item.image_id }}
+---
+{% endfor %}
