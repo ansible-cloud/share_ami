@@ -13,6 +13,7 @@
     region: "{{ item.key }}"
     image_id: "{{ item.value }}"
     state: present
+    purge_tags: false
     launch_permissions:
       user_ids: "{{ user_id_list }}"
   loop: "{{ ami_list | dict2items }}"

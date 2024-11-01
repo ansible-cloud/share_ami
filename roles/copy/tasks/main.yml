@@ -1,9 +1,20 @@
 ---
+- name: New AMI images name
+  debug: 
+    msg: "{{ new_ami_name | default('No Name Specified') }} {{ ansible_date_time.date }} {{ ansible_date_time.time | replace(':','-') }}"
+
+- name: Set it as a fact
+  set_fact: 
+    ami_role_copy_name: "{{ new_ami_name | default('No Name Specified') }} {{ ansible_date_time.date }} {{ ansible_date_time.time | replace(':','-') }}"
+
 - name: Basic AMI copy
   community.aws.ec2_ami_copy:
+    name: "{{ ami_role_copy_name }}"
     source_region: "{{ item[0].key }}"
     source_image_id: "{{ item[0].value }}"
     region: "{{ item[1] }}"
+    tags:
+      Name: "{{ ami_role_copy_name }}"
   loop: "{{ ami_list | dict2items | product(copy_to_regions) | list }}"
   register: copy_info
 
